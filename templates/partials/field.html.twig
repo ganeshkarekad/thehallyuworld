@@ -1,0 +1,19 @@
+{% block form_row %}
+<div class="form-group">
+    <label>{{ form_label(form) }}</label>
+    <div class="nk-int-st">
+        {{ form_widget(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block _article_featuredImage_widget %}
+<div class="form-group">
+  <label>Set Featured Image</label>
+  <div class="col-md-12">
+    <img src="https://via.placeholder.com/950x300.png?text=click%20here" alt="Fetured Image" class="image-responsive uploadImage" style="max-width:100%; max-height:300px">
+    <input type="file" class="hidden" id="uploadImage" name="featuredImage" />
+  </div>
+  {{ form_widget(form) }}
+</div>
+{% endblock %}

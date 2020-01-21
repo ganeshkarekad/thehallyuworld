@@ -1,11 +1,99 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'main/page.html.twig' %}
+{% form_theme form  with 'partials/field.html.twig' %}
 {% block title %}New Article{% endblock %}
 
-{% block body %}
-    <h1>Create new Article</h1>
+{% block content %}
+  <div class="form-example-wrap">
+    <h1>New Article</h1>
 
     {{ include('article/_form.html.twig') }}
+  </div>
+  <a href="{{ path('article_index') }}">back to list</a>
 
-    <a href="{{ path('article_index') }}">back to list</a>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script>
+ClassicEditor
+			.create( document.querySelector( '#article_content' ), {
+
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'indent',
+						'outdent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'undo',
+						'redo',
+						'highlight',
+						'fontSize',
+						'code',
+						'alignment'
+					]
+				},
+				language: 'en',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:full',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				licenseKey: '',
+
+			} )
+			.then( editor => {
+				window.editor = editor;
+
+
+
+
+			} )
+			.catch( error => {
+				console.error( error );
+			} );
+
+      $(document).ready(function()
+      {
+        $('.uploadImage').on('click', function()
+        {
+          $('#uploadImage').trigger('click');
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.uploadImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#uploadImage").change(function(){
+            readURL(this);
+        });
+      });
+</script>
 {% endblock %}

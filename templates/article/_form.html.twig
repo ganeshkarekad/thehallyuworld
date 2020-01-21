@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="form-example-int">
+      <button class="btn btn-success notika-btn-success waves-effect">{{ button_label|default('Submit Article') }}</button>
+    </div>
 {{ form_end(form) }}

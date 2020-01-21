@@ -39,8 +39,7 @@ class ArticleController extends AbstractController
             $article->setCreatedAt(new \DateTime('now'));
             $article->setWriter($this->getUser());
 
-            $tags = $request->attributes->get('tags');
-            dd($tags);
+            dd($request);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
@@ -74,7 +73,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $article->setUpdateddAt(new \DateTime('now'));
 
             $this->getDoctrine()->getManager()->flush();
